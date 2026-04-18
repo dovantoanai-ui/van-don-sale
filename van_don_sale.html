@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Sale - NemThanh</title>
+<style>
+:root {
+  --bl:#185FA5; --blb:#E6F1FB; --bld:#0C447C;
+  --gr:#1A6B35; --grb:#EAF3DE; --grd:#27500A;
+  --re:#A32D2D; --reb:#FCEBEB; --red:#791F1F;
+  --am:#854F0B; --amb:#FAEEDA; --amd:#633806;
+  --tx:#1a1a1a; --mu:#888; --bg:#f7f7f5; --sf:#fff; --bd:#e5e5e3; --bd2:#ccc;
+}
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body { margin:0; padding:0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:var(--bg); color:var(--tx); font-size:14px; }
+button { font-family:inherit; cursor:pointer; }
+input,select,textarea { font-family:inherit; font-size:14px; }
+.app { max-width:500px; margin:0 auto; min-height:100vh; background:var(--bg); padding-bottom:70px; }
+.hd { background:var(--bl); color:#fff; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:50; }
+.hd-t { font-size:15px; font-weight:700; }
+.hd-s { font-size:12px; opacity:.85; margin-top:2px; }
+.btn-r { padding:6px 10px; font-size:12px; background:transparent; border:1px solid rgba(255,255,255,.4); color:#fff; border-radius:8px; }
+.tab { display:flex; padding:8px 12px; gap:6px; background:#eee; border-bottom:.5px solid var(--bd); overflow-x:auto; }
+.tab-btn { flex:1; padding:6px 8px; font-size:12px; background:#fff; border:.5px solid var(--bd2); border-radius:8px; white-space:nowrap; min-width:70px; }
+.tab-btn.on { background:var(--blb); color:var(--bld); border-color:var(--bl); font-weight:600; }
+.sec-hd { padding:8px 14px 6px; font-size:11px; font-weight:600; display:flex; justify-content:space-between; align-items:center; }
+.sec-re { background:var(--reb); color:var(--red); }
+.sec-am { background:var(--amb); color:var(--amd); }
+.sec-bl { background:var(--blb); color:var(--bld); }
+.sec-gr { background:var(--grb); color:var(--grd); }
+.sec-mu { color:var(--mu); font-weight:400; }
+.card { background:var(--sf); padding:10px 14px; border-bottom:.5px solid var(--bd); border-left:3px solid var(--gr); }
+.card-re { border-left-color:var(--re); background:var(--reb); }
+.card-am { border-left-color:#EF9F27; }
+.card-bl { border-left-color:#85B7EB; }
+.card-hd { display:flex; align-items:flex-start; gap:8px; margin-bottom:6px; }
+.card-inf { flex:1; min-width:0; }
+.card-nm { font-size:14px; font-weight:600; }
+.badges { display:flex; gap:6px; margin-top:4px; flex-wrap:wrap; }
+.b-re { background:#E24B4A; color:#fff; font-size:10px; padding:2px 7px; border-radius:6px; font-weight:600; }
+.b-am { background:#EF9F27; color:#633806; font-size:10px; padding:2px 7px; border-radius:6px; font-weight:600; }
+.b-bl { background:var(--blb); color:var(--bld); font-size:10px; padding:2px 7px; border-radius:6px; font-weight:600; }
+.b-gr { background:var(--grb); color:var(--grd); font-size:10px; padding:2px 7px; border-radius:6px; font-weight:600; }
+.b-mu { background:#f0f0f0; color:#666; font-size:10px; padding:2px 7px; border-radius:6px; }
+.tx-re { color:var(--re); font-weight:600; font-size:11px; }
+.tx-am { color:var(--am); font-weight:600; font-size:11px; }
+.tx-mu { color:var(--mu); font-size:11px; }
+.btn-p { padding:6px 10px; font-size:11px; background:var(--bl); color:#fff; border:none; border-radius:8px; font-weight:600; }
+.btn-s { padding:6px 10px; font-size:11px; background:#fff; border:.5px solid var(--bd2); border-radius:8px; }
+.money-row { display:flex; justify-content:space-between; align-items:center; padding:6px 8px; background:var(--sf); border-radius:8px; border:1px solid var(--bd); margin-top:6px; }
+.money-row.re { border-color:#F09595; background:#fff; }
+.money-lbl { font-size:11px; color:var(--mu); }
+.money-val { font-size:15px; font-weight:600; }
+.money-val.re { color:var(--re); }
+.btns { display:flex; gap:6px; }
+.nav { position:fixed; bottom:0; left:0; right:0; display:flex; padding:8px 10px; gap:4px; background:#fff; border-top:.5px solid var(--bd); max-width:500px; margin:0 auto; z-index:100; }
+.nav-btn { flex:1; padding:8px 4px; font-size:10px; background:transparent; border:none; border-radius:8px; color:var(--mu); text-align:center; line-height:1.2; }
+.nav-btn.on { background:var(--blb); color:var(--bld); font-weight:600; }
+.nav-ico { display:block; font-size:18px; margin-bottom:2px; }
+.page { display:none; }
+.page.on { display:block; }
+.summary { padding:12px 12px 4px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+.sum-c { border-radius:8px; padding:10px 12px; border-left:3px solid; }
+.sum-c-gr { background:var(--grb); border-color:#639922; }
+.sum-c-re { background:var(--reb); border-color:var(--re); }
+.sum-c-am { background:var(--amb); border-color:#EF9F27; }
+.sum-n { font-size:18px; font-weight:700; line-height:1; }
+.sum-n.gr { color:var(--grd); }
+.sum-n.re { color:var(--re); }
+.sum-n.am { color:var(--amd); }
+.sum-l { font-size:10px; margin-top:4px; line-height:1.2; }
+.sum-l.gr { color:#3B6D11; }
+.sum-l.re { color:var(--red); }
+.sum-l.am { color:var(--am); }
+.alert { padding:10px 14px; margin:12px 14px 8px; border-radius:8px; border-left:3px solid var(--re); background:var(--reb); }
+.alert-t { font-size:12px; font-weight:700; color:var(--re); margin-bottom:4px; }
+.alert-b { font-size:11px; color:var(--red); line-height:1.5; }
+.prods { padding:6px 8px; background:#f7f7f5; border-radius:8px; font-size:11px; line-height:1.7; margin-top:6px; }
+.prods-lb { color:var(--mu); font-weight:600; }
+.prods-have { color:var(--grd); }
+.prods-miss { color:var(--re); }
+.spacer { padding:24px 14px; text-align:center; color:var(--mu); font-size:11px; }
+.empty { padding:40px 16px; text-align:center; color:var(--mu); font-size:13px; }
+.loading { padding:40px 16px; text-align:center; color:var(--mu); font-size:12px; }
+.toast { position:fixed; bottom:80px; left:50%; transform:translateX(-50%); background:#222; color:#fff; padding:10px 18px; border-radius:8px; font-size:13px; z-index:9999; opacity:0; transition:opacity .3s; pointer-events:none; max-width:90%; }
+.toast.on { opacity:1; }
+.toast.err { background:var(--re); }
+.toast.ok { background:var(--gr); }
+.modal { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.5); z-index:9999; align-items:center; justify-content:center; padding:16px; }
+.modal.on { display:flex; }
+.modal-box { background:#fff; border-radius:12px; width:100%; max-width:460px; max-height:92vh; display:flex; flex-direction:column; overflow:hidden; }
+.modal-hd { padding:14px 16px; background:var(--bl); color:#fff; display:flex; justify-content:space-between; align-items:center; }
+.modal-hd-t { font-size:14px; font-weight:700; }
+.modal-hd-s { font-size:11px; opacity:.85; margin-top:2px; }
+.modal-body { flex:1; overflow-y:auto; }
+.modal-ft { padding:12px 14px; background:#f5f5f5; border-top:.5px solid var(--bd); display:flex; gap:8px; }
+.modal-ft button { flex:1; padding:10px; font-size:12px; font-weight:600; border-radius:8px; }
+.modal-ft .btn-main { flex:2; background:var(--bl); color:#fff; border:none; }
+.modal-ft .btn-main.gr { background:var(--gr); }
+.form-row { margin:14px 16px; }
+.form-lb { font-size:11px; color:var(--mu); font-weight:600; margin-bottom:6px; text-transform:uppercase; letter-spacing:.3px; }
+.form-inp { width:100%; padding:10px 12px; font-size:14px; border:1px solid var(--bd2); border-radius:8px; }
+.form-inp.big { font-size:18px; font-weight:600; text-align:right; }
+.form-sel { width:100%; padding:10px 12px; font-size:13px; border:.5px solid var(--bd); border-radius:8px; background:#fff; }
+.form-ta { width:100%; padding:8px 10px; font-size:12px; border:.5px solid var(--bd); border-radius:8px; resize:vertical; min-height:50px; font-family:inherit; }
+.quick-btns { display:flex; gap:6px; margin-bottom:8px; }
+.quick-btn { flex:1; padding:8px; font-size:11px; background:#fff; border:.5px solid var(--bd2); border-radius:8px; }
+.quick-btn.on { background:var(--grb); border-color:#639922; color:var(--grd); font-weight:600; }
+.note-box { padding:8px 10px; background:var(--amb); border-radius:8px; border-left:3px solid #EF9F27; font-size:11px; color:var(--amd); line-height:1.5; margin:0 16px 14px; }
+.note-box.gr { background:var(--grb); border-color:#639922; color:var(--grd); }
+.sp-det-row { display:flex; justify-content:space-between; align-items:center; padding:6px 14px; border-bottom:.5px solid var(--bd); font-size:12px; }
+.sp-det-row.have { background:var(--grb); }
+.sp-det-pill { font-size:10px; padding:2px 7px; border-radius:6px; background:#fff; font-weight:600; }
+.sp-det-pill.gap { color:var(--re); }
+.sp-det-pill.amb { color:var(--amd); }
+.sp-det-pill.ok { color:#3B6D11; }
+.sp-chip-box { padding:8px 14px; }
+.sp-chips { display:flex; flex-wrap:wrap; gap:4px; }
+.sp-chip { background:#fff; border:1px solid #F09595; color:var(--re); font-size:11px; padding:3px 8px; border-radius:6px; font-weight:600; }
+.sp-prod { background:#f7f7f5; border-radius:8px; padding:10px; margin-bottom:6px; }
+.sp-prod-row { display:flex; gap:6px; align-items:center; margin-bottom:6px; }
+.setup-box { background:var(--sf); border-radius:12px; margin:14px; padding:16px; }
+.setup-row { margin-bottom:14px; }
+.setup-btn { width:100%; padding:12px; background:var(--bl); color:#fff; border:none; border-radius:10px; font-weight:600; font-size:13px; }
+.loader { display:inline-block; width:14px; height:14px; border:2px solid #fff; border-top-color:transparent; border-radius:50%; animation:spin .8s linear infinite; vertical-align:middle; }
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+<div id="pg-home" class="page on">
+  <div class="hd">
+    <div>
+      <div class="hd-t" id="hdT">Sale</div>
+      <div class="hd-s" id="hdS">Chưa cấu hình</div>
+    </div>
+    <button class="btn-r" onclick="pullAll()">Tải lại</button>
+  </div>
+
+  <div class="summary">
+    <div class="sum-c sum-c-gr" onclick="goTab('thuno')"><div class="sum-n gr" id="sCanThu">-</div><div class="sum-l gr">Cần thu<br>hôm nay</div></div>
+    <div class="sum-c sum-c-re" onclick="goTab('thuno')"><div class="sum-n re" id="sQuaHan">-</div><div class="sum-l re">Quá hạn<br>công nợ</div></div>
+    <div class="sum-c sum-c-am" onclick="goTab('chaoma')"><div class="sum-n am" id="sChaoMa">-</div><div class="sum-l am">CH cần<br>chào mã</div></div>
+  </div>
+
+  <div id="homeAlert" style="display:none;"></div>
+
+  <div class="sec-hd sec-bl" id="homeListHd">Lịch ưu tiên hôm nay <span class="sec-mu" id="homeListSub"></span></div>
+  <div id="homeList">
+    <div class="loading">Đang tải...</div>
+  </div>
+</div>
+
+<div id="pg-thuno" class="page">
+  <div class="hd">
+    <div>
+      <div class="hd-t">Thu nợ</div>
+      <div class="hd-s" id="tnSub">-</div>
+    </div>
+    <button class="btn-r" onclick="pullCongNo()">Tải lại</button>
+  </div>
+  <div class="tab">
+    <button class="tab-btn on" data-tnf="all" onclick="tnFilter(this,'all')">Tất cả</button>
+    <button class="tab-btn" data-tnf="qua_han" onclick="tnFilter(this,'qua_han')">Quá hạn</button>
+    <button class="tab-btn" data-tnf="hom_nay" onclick="tnFilter(this,'hom_nay')">Hôm nay</button>
+    <button class="tab-btn" data-tnf="sap_han" onclick="tnFilter(this,'sap_han')">Sắp hạn</button>
+  </div>
+  <div style="padding:8px 12px; background:#eee; border-bottom:.5px solid var(--bd);">
+    <input type="text" id="tnSearch" placeholder="Tìm tên cửa hàng..." oninput="renderCongNo()" style="width:100%; padding:7px 10px; font-size:13px; border:.5px solid var(--bd2); border-radius:8px; background:#fff;">
+  </div>
+  <div style="display:flex; padding:6px 12px; gap:6px; background:#eee; border-bottom:.5px solid var(--bd); align-items:center;">
+    <button class="tab-btn" onclick="openTnFilterModal('quan')" style="flex:none; padding:6px 10px;">Quận <strong id="tnFQuanN">-</strong> ▾</button>
+    <button class="tab-btn" onclick="openTnFilterModal('chuoi')" style="flex:none; padding:6px 10px;">Chuỗi <strong id="tnFChuoiN">-</strong> ▾</button>
+    <span style="font-size:10px; color:var(--mu); margin-left:auto;" id="tnCount">-</span>
+  </div>
+  <div id="tnList"><div class="loading">Đang tải...</div></div>
+</div>
+
+<div id="pg-chaoma" class="page">
+  <div class="hd">
+    <div>
+      <div class="hd-t">Chào mã mới</div>
+      <div class="hd-s" id="cmSub">-</div>
+    </div>
+    <button class="btn-r" onclick="pullMaThieu()">Tải lại</button>
+  </div>
+  <div class="tab">
+    <button class="tab-btn on" data-cms="quan" onclick="cmSort(this,'quan')">Theo quận</button>
+    <button class="tab-btn" data-cms="thieu" onclick="cmSort(this,'thieu')">Thiếu nhiều</button>
+    <button class="tab-btn" data-cms="ten" onclick="cmSort(this,'ten')">Tên CH</button>
+  </div>
+  <div style="display:flex; padding:6px 12px; gap:6px; background:#eee; border-bottom:.5px solid var(--bd); align-items:center;">
+    <button class="tab-btn" id="cmFQuanBtn" onclick="openCmFilterModal('quan')" style="flex:none; padding:6px 10px;">Quận <strong id="cmFQuanN">-</strong> ▾</button>
+    <button class="tab-btn" id="cmFChuoiBtn" onclick="openCmFilterModal('chuoi')" style="flex:none; padding:6px 10px;">Chuỗi <strong id="cmFChuoiN">-</strong> ▾</button>
+    <button class="tab-btn" id="cmFSPBtn" onclick="openCmFilterModal('sp')" style="flex:none; padding:6px 10px;">SP <strong id="cmFSPN">-</strong> ▾</button>
+    <span style="font-size:10px; color:var(--mu); margin-left:auto;" id="cmCount">-</span>
+  </div>
+  <div id="cmList"><div class="loading">Đang tải...</div></div>
+</div>
+
+<div id="pg-lendon" class="page">
+  <div class="hd">
+    <div>
+      <div class="hd-t">Lên đơn mới</div>
+      <div class="hd-s">Gửi cho NV giao hàng</div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-lb">Cửa hàng</div>
+    <input type="text" class="form-inp" id="ldCH" list="ldChList" placeholder="Gõ tên CH để tìm..." oninput="ldCHChange()">
+    <datalist id="ldChList"></datalist>
+    <div class="badges" id="ldInfo" style="margin-top:6px;"></div>
+  </div>
+  <div class="form-row">
+    <div class="form-lb">Loại đơn</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+      <button class="quick-btn on" data-ld="order" onclick="ldLoai(this,'order')">Đặt hàng</button>
+      <button class="quick-btn" data-ld="thu_no" onclick="ldLoai(this,'thu_no')">Thu nợ</button>
+      <button class="quick-btn" data-ld="gap" onclick="ldLoai(this,'gap')">Gấp</button>
+      <button class="quick-btn" data-ld="hen" onclick="ldLoai(this,'hen')">Hẹn giờ</button>
+    </div>
+    <input type="time" class="form-inp" id="ldTime" style="margin-top:8px; display:none;">
+  </div>
+  <div class="form-row">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+      <div class="form-lb" style="margin:0;">Sản phẩm (<span id="ldSPCount">0</span>)</div>
+      <button class="btn-s" onclick="ldAddSP()">+ Thêm SP</button>
+    </div>
+    <div id="ldSPs"></div>
+  </div>
+  <div class="form-row">
+    <div class="form-lb">Ghi chú cho NV (tùy chọn)</div>
+    <textarea class="form-ta" id="ldGhiChu" placeholder="VD: CH yêu cầu giao trước 10h..."></textarea>
+  </div>
+  <div class="note-box gr" id="ldPreview" style="display:none;"></div>
+  <div style="padding:14px; display:flex; gap:8px;">
+    <button class="btn-s" style="flex:1; padding:10px;" onclick="ldReset()">Xóa form</button>
+    <button class="btn-p" style="flex:2; padding:10px;" onclick="ldSubmit()" id="ldSubmitBtn">↑ Gửi đơn</button>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<div id="pg-caidat" class="page">
+  <div class="hd">
+    <div>
+      <div class="hd-t">Cài đặt</div>
+      <div class="hd-s">Sale · Sale-NemThanh</div>
+    </div>
+  </div>
+  <div class="setup-box">
+    <div class="setup-row">
+      <div class="form-lb">Tên Sale</div>
+      <input type="text" class="form-inp" id="setName" placeholder="VD: An, Bình, Cường...">
+    </div>
+    <div class="setup-row">
+      <div class="form-lb">URL Apps Script (chung 3 app)</div>
+      <input type="url" class="form-inp" id="setUrl" placeholder="https://script.google.com/macros/s/.../exec">
+    </div>
+    <button class="setup-btn" onclick="saveSettings()">Lưu cài đặt</button>
+  </div>
+  <div class="setup-box">
+    <div style="font-size:12px; color:var(--mu); line-height:1.6;">
+      <strong>Hướng dẫn:</strong><br>
+      1. Dán URL Apps Script v2.9 đã triển khai<br>
+      2. Chọn tên Sale để hệ thống biết ai thu nợ<br>
+      3. Pull-to-refresh hoặc bấm "Tải lại" để load data
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="nav-btn on" data-pg="home" onclick="goTab('home')"><span class="nav-ico">⌂</span>Hôm nay</button>
+  <button class="nav-btn" data-pg="thuno" onclick="goTab('thuno')"><span class="nav-ico">₫</span>Thu nợ</button>
+  <button class="nav-btn" data-pg="chaoma" onclick="goTab('chaoma')"><span class="nav-ico">+</span>Chào mã</button>
+  <button class="nav-btn" data-pg="lendon" onclick="goTab('lendon')"><span class="nav-ico">↑</span>Lên đơn</button>
+  <button class="nav-btn" data-pg="caidat" onclick="goTab('caidat')"><span class="nav-ico">⚙</span>Cài đặt</button>
+</div>
+
+</div>
+
+<div id="tnModal" class="modal">
+  <div class="modal-box">
+    <div class="modal-hd">
+      <div>
+        <div class="modal-hd-t">Thu nợ</div>
+        <div class="modal-hd-s" id="tnmSub">-</div>
+      </div>
+      <button class="btn-r" onclick="closeTnModal()" style="padding:4px 10px; font-size:14px;">×</button>
+    </div>
+    <div style="padding:14px 16px; background:var(--reb); border-bottom:.5px solid #F09595;">
+      <div style="display:flex; justify-content:space-between; align-items:baseline;">
+        <span style="font-size:11px; color:var(--red); font-weight:600;" id="tnmStatus">-</span>
+        <span style="font-size:10px; color:var(--re);" id="tnmHD">-</span>
+      </div>
+      <div style="font-size:22px; font-weight:700; color:var(--re); margin-top:4px;" id="tnmConLai">-</div>
+      <div style="font-size:10px; color:var(--red); margin-top:2px;" id="tnmHistory">-</div>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-lb">Số tiền thu</div>
+        <div class="quick-btns">
+          <button class="quick-btn" onclick="tnmQuick(500000)">500k</button>
+          <button class="quick-btn" onclick="tnmQuick(1000000)">1 triệu</button>
+          <button class="quick-btn on" onclick="tnmQuickFull()" id="tnmFullBtn">Full</button>
+        </div>
+        <input type="text" inputmode="numeric" class="form-inp big" id="tnmAmount" oninput="tnmAmountChange()">
+        <div style="font-size:11px; color:var(--mu); margin-top:4px; text-align:right;">đồng</div>
+      </div>
+      <div class="form-row">
+        <div class="form-lb">Hình thức</div>
+        <div style="display:flex; gap:6px;">
+          <button class="quick-btn on" data-tnmh="tien_mat" onclick="tnmHinhThuc(this,'tien_mat')">Tiền mặt</button>
+          <button class="quick-btn" data-tnmh="chuyen_khoan" onclick="tnmHinhThuc(this,'chuyen_khoan')">Chuyển khoản</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-lb">Ghi chú (tùy chọn)</div>
+        <textarea class="form-ta" id="tnmGhiChu" placeholder="VD: CH hứa trả hết trong tuần sau..."></textarea>
+      </div>
+      <div class="note-box" id="tnmNote"></div>
+    </div>
+    <div class="modal-ft">
+      <button class="btn-s" onclick="closeTnModal()">Hủy</button>
+      <button class="btn-main gr" onclick="tnmSubmit()" id="tnmSubmitBtn">✓ Xác nhận</button>
+    </div>
+  </div>
+</div>
+
+<div id="cmDetModal" class="modal">
+  <div class="modal-box">
+    <div class="modal-hd">
+      <div>
+        <div class="modal-hd-t" id="cmdTenCH">-</div>
+        <div class="modal-hd-s" id="cmdQuan">-</div>
+      </div>
+      <button class="btn-r" onclick="closeCmDetModal()" style="padding:4px 10px; font-size:14px;">×</button>
+    </div>
+    <div class="summary" style="padding:10px 14px;">
+      <div class="sum-c sum-c-gr"><div class="sum-n gr" id="cmdDangCo">-</div><div class="sum-l gr">Đang nhập</div></div>
+      <div class="sum-c sum-c-re" style="grid-column:span 2;"><div class="sum-n re" id="cmdChuaCo">-</div><div class="sum-l re">Chưa có - cần chào</div></div>
+    </div>
+    <div class="modal-body">
+      <div class="sec-hd sec-gr">ĐANG NHẬP <span id="cmdDangCoN"></span></div>
+      <div id="cmdDangCoList"></div>
+      <div class="sec-hd sec-re" style="margin-top:8px;">CHƯA CÓ - CẦN CHÀO <span id="cmdChuaCoN"></span></div>
+      <div class="sp-chip-box">
+        <div class="sp-chips" id="cmdChuaCoList"></div>
+      </div>
+    </div>
+    <div class="modal-ft">
+      <button class="btn-s" onclick="closeCmDetModal()">Đóng</button>
+      <button class="btn-main" onclick="cmdXongChao()" id="cmdXongBtn">✓ Đã chào xong</button>
+    </div>
+  </div>
+</div>
+
+<div id="cmFilterModal" class="modal">
+  <div class="modal-box" style="max-width:380px;">
+    <div class="modal-hd">
+      <div>
+        <div class="modal-hd-t" id="cmfmT">Chọn</div>
+        <div class="modal-hd-s" id="cmfmS">-</div>
+      </div>
+      <button class="btn-r" onclick="closeCmFilterModal()" style="padding:4px 10px; font-size:14px;">×</button>
+    </div>
+    <div style="padding:10px 14px; background:#f5f5f5; display:flex; gap:6px; border-bottom:.5px solid var(--bd);">
+      <button class="btn-s" style="flex:1;" onclick="cmfmAll(true)">Chọn tất cả</button>
+      <button class="btn-s" style="flex:1;" onclick="cmfmAll(false)">Bỏ chọn tất cả</button>
+    </div>
+    <div class="modal-body" id="cmfmList"></div>
+    <div class="modal-ft">
+      <button class="btn-s" onclick="closeCmFilterModal()">Hủy</button>
+      <button class="btn-main" onclick="cmfmApply()">Áp dụng</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+const PROD_LIST = [
+  'Nem chua','Nem Thinh','Nem Tom','Ha cao tom',
+  'Banh bao kim sa','Banh bao xa xiu','Banh bao Maylayxia',
+  'Mo heo thao duoc','Vit co lung',
+  'Nuoc mam 36N','Nuoc mam 31N','Nuoc mam 29N','Nuoc mam 26N',
+  'Nuoc mam 20N 1800ml','Nuoc mam 20N 1000ml',
+  'Mam tom 500g','Mam tom 250g','Mam tom 120g',
+  'Mam tep 500g','Mam tep 250g','Mam tep 120g'
+];
+
+function ld(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function fmtMoney(n){var x=Math.round(n||0);return x.toLocaleString('vi-VN')+'đ';}
+function fmtMoneyShort(n){n=n||0;if(n>=1000000)return (n/1000000).toFixed(n%1000000===0?0:1).replace(/\.0$/,'')+' triệu';if(n>=1000)return Math.round(n/1000)+'k';return n+'đ';}
+function fmtDateShort(s){if(!s)return '';var d=new Date(s);if(isNaN(d))return s;return d.getDate()+'/'+(d.getMonth()+1);}
+
+function toast(msg,type){
+  var t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast on '+(type||'');
+  setTimeout(()=>t.classList.remove('on'),2500);
+}
+
+let GS_URL=ld('sale_gs_url','');
+let MY_NAME=ld('sale_my_name','');
+let chData=ld('sale_ch_cache',null);
+let maThieuData=null;
+let congNoData=null;
+let homeData=null;
+let ldSPList=[];
+let ldLoaiCur='order';
+let cmSortCur='quan';
+let cmFilterQuan=ld('sale_cm_quan',null);
+let cmFilterChuoi=ld('sale_cm_chuoi',null);
+let cmFilterSP=ld('sale_cm_sp',null);
+const CHUOI_OFF_DEFAULT=['winmart','winmart+','vinmart','vinmart+','wm','wm+'];
+let tnFilterCur='all';
+let tnFilterQuan=ld('sale_tn_quan',null);
+let tnFilterChuoi=ld('sale_tn_chuoi',null);
+let tnmCur=null;
+let cmdCur=null;
+
+function goTab(pg){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.getElementById('pg-'+pg).classList.add('on');
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('on',b.dataset.pg===pg));
+  window.scrollTo(0,0);
+  if(pg==='home' && !homeData) pullHome();
+  if(pg==='thuno' && !congNoData) pullCongNo();
+  if(pg==='chaoma' && !maThieuData) pullMaThieu();
+  if(pg==='lendon' && !chData) pullCHList();
+}
+
+function saveSettings(){
+  var url=document.getElementById('setUrl').value.trim();
+  var name=document.getElementById('setName').value.trim();
+  if(!url){toast('Nhập URL Apps Script','err');return;}
+  if(!name){toast('Nhập tên Sale','err');return;}
+  GS_URL=url;MY_NAME=name;
+  sv('sale_gs_url',GS_URL);sv('sale_my_name',MY_NAME);
+  document.getElementById('hdS').textContent='Sale '+MY_NAME;
+  toast('Đã lưu','ok');
+  pullAll();
+  goTab('home');
+}
+
+function apiGet(params){
+  if(!GS_URL) return Promise.reject(new Error('Chua cau hinh URL'));
+  var q=Object.keys(params).map(k=>k+'='+encodeURIComponent(params[k])).join('&');
+  return fetch(GS_URL+'?'+q,{method:'GET',mode:'cors'})
+    .then(r=>r.json());
+}
+function apiPost(body){
+  if(!GS_URL) return Promise.reject(new Error('Chua cau hinh URL'));
+  return fetch(GS_URL,{method:'POST',mode:'cors',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify(body)}).then(r=>r.json());
+}
+
+function pullAll(){
+  pullHome();
+  pullCongNo();
+  pullMaThieu();
+  pullCHList();
+}
+
+function pullHome(){
+  document.getElementById('homeList').innerHTML='<div class="loading">Đang tải...</div>';
+  apiGet({loai:'congno_homnay',action:'get'}).then(d=>{
+    if(!d.ok){toast('Lỗi: '+(d.msg||'unknown'),'err');return;}
+    homeData=d;
+    renderHome();
+  }).catch(e=>{
+    document.getElementById('homeList').innerHTML='<div class="empty">Lỗi kết nối. Kiểm tra URL Apps Script.</div>';
+  });
+}
+
+function renderHome(){
+  if(!homeData) return;
+  var s=homeData.summary;
+  document.getElementById('sCanThu').textContent=s.canThuHomNay;
+  document.getElementById('sQuaHan').textContent=s.quaHan;
+  document.getElementById('sChaoMa').textContent=s.canChaoMa;
+
+  var alertEl=document.getElementById('homeAlert');
+  if(s.quaHan>0){
+    alertEl.innerHTML='<div class="alert"><div class="alert-t">Cần làm ngay</div><div class="alert-b">'+s.quaHan+' CH quá hạn công nợ tổng '+fmtMoneyShort(s.tongNoQuaHan)+'. Ưu tiên thu trước khi chào mã mới.</div></div>';
+    alertEl.style.display='block';
+  } else {
+    alertEl.style.display='none';
+  }
+
+  var list=[];
+  (homeData.uuTien.quaHan||[]).forEach(r=>list.push({type:'qh',data:r}));
+  (homeData.uuTien.homNay||[]).forEach(r=>list.push({type:'hn',data:r}));
+  (homeData.uuTien.chaoMa||[]).slice(0,3).forEach(r=>list.push({type:'cm',data:r}));
+
+  document.getElementById('homeListSub').textContent=list.length+' điểm ưu tiên';
+  var html='';
+  list.forEach(it=>{
+    if(it.type==='qh'||it.type==='hn'){
+      var r=it.data;
+      var cls=it.type==='qh'?'card-re':'card-am';
+      var badge=it.type==='qh'?('<span class="b-re">Quá '+Math.abs(r.ngayConLai)+' ngày</span>'):'<span class="b-am">Hạn hôm nay</span>';
+      var money=it.type==='qh'?'<span class="tx-re">Nợ '+fmtMoneyShort(r.conLai)+'</span>':'<span class="tx-am">Nợ '+fmtMoneyShort(r.conLai)+'</span>';
+      html+='<div class="card '+cls+'"><div class="card-hd"><div class="card-inf"><div class="card-nm">'+esc(r.tenCH)+'</div><div class="badges">'+badge+' '+money+'</div></div><button class="btn-p" onclick="openTnModal(\''+escJ(r.tenCH)+'\',\''+escJ(r.soHD)+'\')">Thu nợ</button></div></div>';
+    } else {
+      var r=it.data;
+      html+='<div class="card card-bl"><div class="card-hd"><div class="card-inf"><div class="card-nm">'+esc(r.tenCH)+'</div><div class="badges"><span class="b-bl">Thiếu '+r.chuaCo+' mã</span></div></div><button class="btn-p" onclick="openCmDetModal(\''+escJ(r.tenCH)+'\')">Chào mã</button></div></div>';
+    }
+  });
+  if(!html) html='<div class="empty">Hôm nay không có việc ưu tiên. Nghỉ thôi!</div>';
+  document.getElementById('homeList').innerHTML=html;
+}
+
+function escJ(s){return String(s||'').replace(/'/g,"\\'");}
+
+function pullCongNo(){
+  document.getElementById('tnList').innerHTML='<div class="loading">Đang tải...</div>';
+  apiGet({loai:'congno_list',action:'get'}).then(d=>{
+    if(!d.ok){toast('Lỗi: '+(d.msg||'unknown'),'err');return;}
+    congNoData=d;
+    document.getElementById('tnSub').textContent=d.total+' CH · Tổng nợ '+fmtMoneyShort(d.totalAmount);
+    renderCongNo();
+  }).catch(e=>{
+    document.getElementById('tnList').innerHTML='<div class="empty">Lỗi kết nối.</div>';
+  });
+}
+
+function tnFilter(btn,f){
+  tnFilterCur=f;
+  document.querySelectorAll('[data-tnf]').forEach(b=>b.classList.toggle('on',b.dataset.tnf===f));
+  renderCongNo();
+}
+
+// v2.10: Check filter pass cho Thu no
+function tnFilterPass(r){
+  if(tnFilterQuan && tnFilterQuan[r.quan||'Khac']===false)return false;
+  if(tnFilterChuoi && tnFilterChuoi[r.chuoi||'Le']===false)return false;
+  return true;
+}
+
+function tnUpdateFilterBtns(){
+  if(!congNoData)return;
+  var allQ={};congNoData.rows.forEach(r=>allQ[r.quan||'Khac']=1);
+  var qTot=Object.keys(allQ).length,qOn=qTot;
+  if(tnFilterQuan){qOn=Object.keys(allQ).filter(q=>tnFilterQuan[q]!==false).length;}
+  document.getElementById('tnFQuanN').textContent=qOn+'/'+qTot;
+  var allC={};congNoData.rows.forEach(r=>allC[r.chuoi||'Le']=1);
+  var cTot=Object.keys(allC).length,cOn=cTot;
+  if(tnFilterChuoi){cOn=Object.keys(allC).filter(c=>tnFilterChuoi[c]!==false).length;}
+  document.getElementById('tnFChuoiN').textContent=cOn+'/'+cTot;
+}
+
+function renderCongNo(){
+  if(!congNoData) return;
+  var c=congNoData.counters;
+  document.querySelector('[data-tnf="all"]').textContent='Tất cả ('+congNoData.total+')';
+  document.querySelector('[data-tnf="qua_han"]').textContent='Quá hạn ('+(c.qua_han||0)+')';
+  document.querySelector('[data-tnf="hom_nay"]').textContent='Hôm nay ('+(c.hom_nay||0)+')';
+  document.querySelector('[data-tnf="sap_han"]').textContent='Sắp hạn ('+(c.sap_han||0)+')';
+
+  tnUpdateFilterBtns();
+  var search=(document.getElementById('tnSearch').value||'').toLowerCase().trim();
+
+  var rows=congNoData.rows.filter(r=>{
+    if(tnFilterCur!=='all' && r.loai!==tnFilterCur)return false;
+    if(!tnFilterPass(r))return false;
+    if(search && (r.tenCH||'').toLowerCase().indexOf(search)<0)return false;
+    return true;
+  });
+
+  document.getElementById('tnCount').textContent='Hiện '+rows.length+'/'+congNoData.total+' CH';
+
+  if(!rows.length){
+    document.getElementById('tnList').innerHTML='<div class="empty">'+(search?'Không tìm thấy CH "'+esc(search)+'"':'Không có CH nào khớp filter')+'</div>';
+    return;
+  }
+
+  var groups={qua_han:[],hom_nay:[],sap_han:[]};
+  rows.forEach(r=>groups[r.loai].push(r));
+
+  var html='';
+  if(groups.qua_han.length){
+    var tongQH=groups.qua_han.reduce((s,r)=>s+r.conLai,0);
+    html+='<div class="sec-hd sec-re"><span>Quá hạn · '+groups.qua_han.length+' CH</span><span class="sec-mu">Tổng '+fmtMoneyShort(tongQH)+'</span></div>';
+    groups.qua_han.forEach(r=>html+=tnCard(r,'qh'));
+  }
+  if(groups.hom_nay.length){
+    var tongHN=groups.hom_nay.reduce((s,r)=>s+r.conLai,0);
+    html+='<div class="sec-hd sec-am"><span>Phải thu hôm nay · '+groups.hom_nay.length+' CH</span><span class="sec-mu">Tổng '+fmtMoneyShort(tongHN)+'</span></div>';
+    groups.hom_nay.forEach(r=>html+=tnCard(r,'hn'));
+  }
+  if(groups.sap_han.length){
+    var tongSH=groups.sap_han.reduce((s,r)=>s+r.conLai,0);
+    html+='<div class="sec-hd sec-bl"><span>Sắp hạn · '+groups.sap_han.length+' CH</span><span class="sec-mu">Tổng '+fmtMoneyShort(tongSH)+'</span></div>';
+    groups.sap_han.forEach(r=>html+=tnCard(r,'sh'));
+  }
+  html+='<div class="spacer">Hết danh sách</div>';
+  document.getElementById('tnList').innerHTML=html;
+}
+
+function tnCard(r,kind){
+  var cls=kind==='qh'?'card-re':kind==='hn'?'card-am':'';
+  var badge;
+  if(kind==='qh') badge='<span class="b-re">Quá '+Math.abs(r.ngayConLai)+' ngày</span>';
+  else if(kind==='hn') badge='<span class="b-am">Hạn hôm nay</span>';
+  else badge='<span class="b-bl">Còn '+r.ngayConLai+' ngày</span>';
+  var moneyCls=kind==='qh'?'money-row re':'money-row';
+  var daTraHtml=r.daTra>0?' (đã thu '+fmtMoneyShort(r.daTra)+')':'';
+  var moneyValCls=kind==='qh'?'money-val re':'money-val';
+  var chuoiBadge=r.chuoi?' <span class="b-mu">'+esc(r.chuoi)+'</span>':'';
+  var quanBadge=r.quan?' <span class="b-mu">'+esc(r.quan)+'</span>':'';
+  return '<div class="card '+cls+'">'+
+    '<div class="card-hd"><div class="card-inf"><div class="card-nm">'+esc(r.tenCH)+'</div>'+
+    '<div class="badges">'+badge+' <span class="tx-mu">'+esc(r.soHD||'-')+' · '+fmtDateShort(r.ngayHD)+'</span>'+quanBadge+chuoiBadge+'</div></div></div>'+
+    '<div class="'+moneyCls+'"><div><div class="money-lbl">Còn lại'+daTraHtml+'</div><div class="'+moneyValCls+'">'+fmtMoney(r.conLai)+'</div></div>'+
+    '<div class="btns"><button class="btn-p" onclick="openTnModal(\''+escJ(r.tenCH)+'\',\''+escJ(r.soHD)+'\')">Thu nợ</button></div></div></div>';
+}
+
+// ===== Filter Modal rieng cho Thu no (doc lap voi Chao ma) =====
+let tnfmType=null;
+let tnfmTempState={};
+
+function openTnFilterModal(type){
+  if(!congNoData){toast('Chưa có data','err');return;}
+  tnfmType=type;
+  var items=[], curFilter, title, sub;
+  if(type==='quan'){
+    var all={};congNoData.rows.forEach(r=>{var q=r.quan||'Khac';all[q]=(all[q]||0)+1;});
+    items=Object.keys(all).sort().map(k=>({id:k,label:k,count:all[k]+' CH',badge:''}));
+    curFilter=tnFilterQuan||{};
+    title='Chọn quận';sub=items.length+' quận';
+  } else {
+    var all={};congNoData.rows.forEach(r=>{var c=r.chuoi||'Le';all[c]=(all[c]||0)+1;});
+    items=Object.keys(all).sort().map(k=>({id:k,label:k,count:all[k]+' CH',badge:''}));
+    curFilter=tnFilterChuoi||{};
+    title='Chọn chuỗi';sub=items.length+' chuỗi';
+  }
+  tnfmTempState={};
+  items.forEach(it=>{tnfmTempState[it.id]=curFilter[it.id]!==false;});
+  document.getElementById('cmfmT').textContent=title;
+  document.getElementById('cmfmS').textContent=sub;
+  var html='';
+  items.forEach(it=>{
+    var ck=tnfmTempState[it.id]?'checked':'';
+    html+='<label style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:.5px solid var(--bd); cursor:pointer;">'+
+      '<input type="checkbox" '+ck+' data-id="'+esc(it.id)+'" onchange="tnfmToggle(this)" style="width:18px; height:18px; flex-shrink:0;">'+
+      '<span style="flex:1; font-size:13px;">'+esc(it.label)+'</span>'+
+      '<span style="font-size:11px; color:var(--mu);">'+esc(it.count)+'</span>'+
+      '</label>';
+  });
+  document.getElementById('cmfmList').innerHTML=html;
+  document.getElementById('cmFilterModal').classList.add('on');
+  var ftBtn=document.querySelector('#cmFilterModal .btn-main');
+  ftBtn.setAttribute('onclick','tnfmApply()');
+}
+
+function tnfmToggle(el){tnfmTempState[el.dataset.id]=el.checked;}
+function tnfmApply(){
+  if(tnfmType==='quan'){tnFilterQuan=Object.assign({},tnfmTempState);sv('sale_tn_quan',tnFilterQuan);}
+  else{tnFilterChuoi=Object.assign({},tnfmTempState);sv('sale_tn_chuoi',tnFilterChuoi);}
+  closeCmFilterModal();
+  var ftBtn=document.querySelector('#cmFilterModal .btn-main');
+  ftBtn.setAttribute('onclick','cmfmApply()');
+  renderCongNo();
+}
+
+function openTnModal(tenCH,soHD){
+  var r=null;
+  if(congNoData) r=congNoData.rows.find(x=>x.tenCH===tenCH && x.soHD===soHD);
+  if(!r && homeData){
+    (homeData.uuTien.quaHan||[]).forEach(x=>{if(x.tenCH===tenCH && x.soHD===soHD)r=x;});
+    (homeData.uuTien.homNay||[]).forEach(x=>{if(x.tenCH===tenCH && x.soHD===soHD)r=x;});
+  }
+  if(!r){toast('Không tìm thấy đơn nợ','err');return;}
+  tnmCur=r;
+  document.getElementById('tnmSub').textContent=r.tenCH+' · '+(r.soHD||'-');
+  var stTxt;
+  if(r.loai==='qua_han') stTxt='Còn lại (quá '+Math.abs(r.ngayConLai)+' ngày)';
+  else if(r.loai==='hom_nay') stTxt='Còn lại (hạn hôm nay)';
+  else stTxt='Còn lại (còn '+r.ngayConLai+' ngày)';
+  document.getElementById('tnmStatus').textContent=stTxt;
+  document.getElementById('tnmHD').textContent='HD '+fmtDateShort(r.ngayHD);
+  document.getElementById('tnmConLai').textContent=fmtMoney(r.conLai);
+  document.getElementById('tnmHistory').textContent='Tổng HD: '+fmtMoney(r.tongTien)+' · Đã thu: '+fmtMoney(r.daTra);
+  document.getElementById('tnmAmount').value=Math.round(r.conLai).toLocaleString('vi-VN');
+  document.getElementById('tnmGhiChu').value='';
+  tnmUpdateNote();
+  document.getElementById('tnModal').classList.add('on');
+}
+
+function closeTnModal(){document.getElementById('tnModal').classList.remove('on');tnmCur=null;}
+function tnmQuick(amt){
+  if(!tnmCur)return;
+  var use=Math.min(amt,tnmCur.conLai);
+  document.getElementById('tnmAmount').value=use.toLocaleString('vi-VN');
+  tnmUpdateNote();
+}
+function tnmQuickFull(){if(!tnmCur)return;tnmQuick(tnmCur.conLai);}
+function tnmAmountChange(){
+  var el=document.getElementById('tnmAmount');
+  var v=el.value.replace(/[^\d]/g,'');
+  el.value=v?parseInt(v).toLocaleString('vi-VN'):'';
+  tnmUpdateNote();
+}
+function tnmUpdateNote(){
+  if(!tnmCur)return;
+  var v=parseInt(document.getElementById('tnmAmount').value.replace(/[^\d]/g,''))||0;
+  var note=document.getElementById('tnmNote');
+  var btn=document.getElementById('tnmSubmitBtn');
+  if(v>=tnmCur.conLai){
+    note.textContent='Thu đủ '+fmtMoney(tnmCur.conLai)+' → CH hết nợ, chuyển sang "Đã thu".';
+    note.className='note-box gr';
+  } else if(v>0){
+    note.textContent='Thu '+fmtMoney(v)+', còn lại '+fmtMoney(tnmCur.conLai-v)+'. CH vẫn trong danh sách nợ.';
+    note.className='note-box';
+  } else {
+    note.textContent='Nhập số tiền thu.';
+    note.className='note-box';
+  }
+  btn.textContent=v>0?'✓ Xác nhận thu '+fmtMoney(v):'✓ Xác nhận';
+}
+function tnmHinhThuc(btn,v){
+  document.querySelectorAll('[data-tnmh]').forEach(b=>b.classList.toggle('on',b.dataset.tnmh===v));
+}
+function tnmSubmit(){
+  if(!tnmCur)return;
+  var v=parseInt(document.getElementById('tnmAmount').value.replace(/[^\d]/g,''))||0;
+  if(v<=0){toast('Nhập số tiền','err');return;}
+  var hinhThuc=document.querySelector('[data-tnmh].on').dataset.tnmh;
+  var ghiChu=document.getElementById('tnmGhiChu').value.trim();
+  var btn=document.getElementById('tnmSubmitBtn');
+  btn.disabled=true;
+  btn.innerHTML='<span class="loader"></span> Đang lưu...';
+  apiPost({loai:'congno_thu',tenCH:tnmCur.tenCH,soHD:tnmCur.soHD,soTien:v,hinhThuc:hinhThuc,nvSale:MY_NAME,ghiChu:ghiChu})
+    .then(d=>{
+      btn.disabled=false;
+      btn.textContent='✓ Xác nhận';
+      if(!d.ok){toast('Lỗi: '+d.msg,'err');return;}
+      toast('Đã thu '+fmtMoney(v),'ok');
+      closeTnModal();
+      pullCongNo();
+      pullHome();
+    })
+    .catch(e=>{
+      btn.disabled=false;
+      btn.textContent='✓ Xác nhận';
+      toast('Lỗi kết nối','err');
+    });
+}
+
+function pullMaThieu(){
+  document.getElementById('cmList').innerHTML='<div class="loading">Đang tải...</div>';
+  apiGet({loai:'ma_thieu_list',action:'get'}).then(d=>{
+    if(!d.ok){toast('Lỗi: '+(d.msg||'unknown'),'err');return;}
+    maThieuData=d;
+    var avg=d.total>0?Math.round(d.rows.reduce((s,r)=>s+r.chuaCo,0)/d.total):0;
+    document.getElementById('cmSub').textContent=d.total+' CH · Trung bình thiếu '+avg+' mã/CH';
+    renderMaThieu();
+  }).catch(e=>{
+    document.getElementById('cmList').innerHTML='<div class="empty">Lỗi kết nối.</div>';
+  });
+}
+
+function cmSort(btn,s){
+  cmSortCur=s;
+  document.querySelectorAll('[data-cms]').forEach(b=>b.classList.toggle('on',b.dataset.cms===s));
+  renderMaThieu();
+}
+
+// Init filter chuoi default: bo tich Winmart/Vinmart lan dau
+function cmInitFilterChuoi(){
+  if(cmFilterChuoi!==null)return; // user da tu cai
+  if(!maThieuData)return;
+  var allChuois={};
+  maThieuData.rows.forEach(r=>{if(r.chuoi)allChuois[r.chuoi]=1;});
+  var arr=Object.keys(allChuois);
+  var enabled={};
+  arr.forEach(c=>{
+    var cl=c.toLowerCase().trim();
+    enabled[c]=!CHUOI_OFF_DEFAULT.some(bad=>cl===bad||cl===bad.replace('+','')+''||cl.indexOf(bad)>=0 && bad.length>=4);
+  });
+  cmFilterChuoi=enabled;
+  sv('sale_cm_chuoi',cmFilterChuoi);
+}
+
+// Ap dung filter cho 1 row
+function cmFilterPass(r){
+  if(cmFilterQuan && cmFilterQuan[r.quan]===false)return false;
+  if(cmFilterChuoi && cmFilterChuoi[r.chuoi||'Le']===false)return false;
+  if(cmFilterSP){
+    // Chi hien CH dang thieu it nhat 1 SP trong list chon
+    var spList=r.chuaCoSPs||[];
+    var matched=spList.some(sp=>cmFilterSP[sp]!==false);
+    if(!matched)return false;
+  }
+  return true;
+}
+
+function cmUpdateFilterBtns(){
+  if(!maThieuData)return;
+  // Quan
+  var allQ={};maThieuData.rows.forEach(r=>allQ[r.quan]=1);
+  var qTot=Object.keys(allQ).length,qOn=qTot;
+  if(cmFilterQuan){qOn=Object.keys(allQ).filter(q=>cmFilterQuan[q]!==false).length;}
+  document.getElementById('cmFQuanN').textContent=qOn+'/'+qTot;
+  // Chuoi
+  var allC={};maThieuData.rows.forEach(r=>allC[r.chuoi||'Le']=1);
+  var cTot=Object.keys(allC).length,cOn=cTot;
+  if(cmFilterChuoi){cOn=Object.keys(allC).filter(c=>cmFilterChuoi[c]!==false).length;}
+  document.getElementById('cmFChuoiN').textContent=cOn+'/'+cTot;
+  // SP
+  var sTot=PROD_LIST.length,sOn=sTot;
+  if(cmFilterSP){sOn=PROD_LIST.filter(s=>cmFilterSP[s]!==false).length;}
+  document.getElementById('cmFSPN').textContent=sOn+'/'+sTot;
+}
+
+function renderMaThieu(){
+  if(!maThieuData||!maThieuData.rows.length){
+    document.getElementById('cmList').innerHTML='<div class="empty">Không CH nào thiếu mã</div>';
+    document.getElementById('cmCount').textContent='';
+    return;
+  }
+  cmInitFilterChuoi();
+  cmUpdateFilterBtns();
+
+  var filtered=maThieuData.rows.filter(cmFilterPass);
+  document.getElementById('cmCount').textContent='Hiện '+filtered.length+'/'+maThieuData.rows.length+' CH';
+
+  if(!filtered.length){
+    document.getElementById('cmList').innerHTML='<div class="empty">Không CH nào khớp bộ lọc. Thử bật thêm quận/chuỗi.</div>';
+    return;
+  }
+
+  var html='';
+  if(cmSortCur==='quan'){
+    var byQ={};
+    filtered.forEach(r=>{if(!byQ[r.quan])byQ[r.quan]={count:0,thieuMa:0,rows:[]};byQ[r.quan].count++;byQ[r.quan].thieuMa+=r.chuaCo;byQ[r.quan].rows.push(r);});
+    var quans=Object.keys(byQ).sort((a,b)=>byQ[b].thieuMa-byQ[a].thieuMa);
+    quans.forEach(q=>{
+      var g=byQ[q];
+      g.rows.sort((a,b)=>b.chuaCo-a.chuaCo);
+      html+='<div class="sec-hd sec-bl"><span>'+esc(q)+' · '+g.count+' CH</span><span class="sec-mu">Thiếu '+g.thieuMa+' mã</span></div>';
+      g.rows.forEach(r=>html+=cmCard(r));
+    });
+  } else {
+    var rows=filtered.slice();
+    if(cmSortCur==='thieu') rows.sort((a,b)=>b.chuaCo-a.chuaCo);
+    else rows.sort((a,b)=>a.tenCH.localeCompare(b.tenCH));
+    rows.forEach(r=>html+=cmCard(r));
+  }
+  html+='<div class="spacer">Hết danh sách</div>';
+  document.getElementById('cmList').innerHTML=html;
+}
+
+function cmCard(r){
+  var lvCls=r.chuaCo>10?'card-re':r.chuaCo>=5?'card-am':'card-bl';
+  var badgeCls=r.chuaCo>10?'b-re':r.chuaCo>=5?'b-am':'b-bl';
+  var chuoi=r.chuoi||'Le';
+  var chuoiBadge='<span class="b-mu">'+esc(chuoi)+'</span>';
+  return '<div class="card '+lvCls+'">'+
+    '<div class="card-hd"><div class="card-inf"><div class="card-nm">'+esc(r.tenCH)+'</div>'+
+    '<div class="badges"><span class="'+badgeCls+'">Thiếu '+r.chuaCo+' mã</span><span class="b-bl">Có '+r.dangCo+'/'+r.tongSP+'</span>'+chuoiBadge+'</div></div>'+
+    '<button class="btn-p" onclick="openCmDetModal(\''+escJ(r.tenCH)+'\')">Chi tiết</button></div></div>';
+}
+
+// ===== Filter Modal (dung chung 3 loai: quan/chuoi/sp) =====
+let cmfmType=null;
+let cmfmTempState={};
+
+function openCmFilterModal(type){
+  if(!maThieuData){toast('Chưa có data','err');return;}
+  cmfmType=type;
+  var items=[], curFilter, title, sub;
+  if(type==='quan'){
+    var all={};maThieuData.rows.forEach(r=>{all[r.quan]=(all[r.quan]||0)+1;});
+    items=Object.keys(all).sort().map(k=>({id:k,label:k,count:all[k]+' CH',badge:''}));
+    curFilter=cmFilterQuan||{};
+    title='Chọn quận';sub=items.length+' quận';
+  } else if(type==='chuoi'){
+    cmInitFilterChuoi();
+    var all={};maThieuData.rows.forEach(r=>{var c=r.chuoi||'Le';all[c]=(all[c]||0)+1;});
+    items=Object.keys(all).sort().map(k=>{
+      var cl=k.toLowerCase().trim();
+      var isBad=CHUOI_OFF_DEFAULT.indexOf(cl)>=0;
+      return {id:k,label:k,count:all[k]+' CH',badge:isBad?'Mặc định tắt':''};
+    });
+    curFilter=cmFilterChuoi||{};
+    title='Chọn chuỗi';sub=items.length+' chuỗi';
+  } else {
+    items=PROD_LIST.map(p=>{
+      var c=0;(maThieuData.rows||[]).forEach(r=>{if((r.chuaCoSPs||[]).indexOf(p)>=0)c++;});
+      return {id:p,label:p,count:c+' CH thiếu',badge:''};
+    });
+    curFilter=cmFilterSP||{};
+    title='Chọn sản phẩm';sub='Lọc CH đang thiếu SP nào';
+  }
+  cmfmTempState={};
+  items.forEach(it=>{cmfmTempState[it.id]=curFilter[it.id]!==false;});
+  document.getElementById('cmfmT').textContent=title;
+  document.getElementById('cmfmS').textContent=sub;
+  var html='';
+  items.forEach(it=>{
+    var ck=cmfmTempState[it.id]?'checked':'';
+    var badge=it.badge?'<span class="b-re" style="font-size:9px;">'+esc(it.badge)+'</span>':'';
+    html+='<label style="display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:.5px solid var(--bd); cursor:pointer;">'+
+      '<input type="checkbox" '+ck+' data-id="'+esc(it.id)+'" onchange="cmfmToggle(this)" style="width:18px; height:18px; flex-shrink:0;">'+
+      '<span style="flex:1; font-size:13px;'+(it.badge?'opacity:.7;':'')+'">'+esc(it.label)+' '+badge+'</span>'+
+      '<span style="font-size:11px; color:var(--mu);">'+esc(it.count)+'</span>'+
+      '</label>';
+  });
+  document.getElementById('cmfmList').innerHTML=html;
+  document.getElementById('cmFilterModal').classList.add('on');
+}
+
+function closeCmFilterModal(){
+  document.getElementById('cmFilterModal').classList.remove('on');
+  cmfmType=null;cmfmTempState={};
+}
+
+function cmfmToggle(el){
+  cmfmTempState[el.dataset.id]=el.checked;
+}
+
+function cmfmAll(checked){
+  Object.keys(cmfmTempState).forEach(k=>cmfmTempState[k]=checked);
+  document.querySelectorAll('#cmfmList input[type="checkbox"]').forEach(c=>c.checked=checked);
+}
+
+function cmfmApply(){
+  if(cmfmType==='quan'){cmFilterQuan=Object.assign({},cmfmTempState);sv('sale_cm_quan',cmFilterQuan);}
+  else if(cmfmType==='chuoi'){cmFilterChuoi=Object.assign({},cmfmTempState);sv('sale_cm_chuoi',cmFilterChuoi);}
+  else if(cmfmType==='sp'){cmFilterSP=Object.assign({},cmfmTempState);sv('sale_cm_sp',cmFilterSP);}
+  closeCmFilterModal();
+  renderMaThieu();
+}
+
+function openCmDetModal(tenCH){
+  cmdCur={tenCH:tenCH};
+  document.getElementById('cmdTenCH').textContent=tenCH;
+  document.getElementById('cmdQuan').textContent='Đang tải...';
+  document.getElementById('cmdDangCo').textContent='-';
+  document.getElementById('cmdChuaCo').textContent='-';
+  document.getElementById('cmdDangCoList').innerHTML='<div class="loading">...</div>';
+  document.getElementById('cmdChuaCoList').innerHTML='';
+  document.getElementById('cmDetModal').classList.add('on');
+  apiGet({loai:'ma_thieu_ch',action:'get',tenCH:tenCH}).then(d=>{
+    if(!d.ok){toast('Lỗi: '+d.msg,'err');closeCmDetModal();return;}
+    cmdCur=d;
+    document.getElementById('cmdQuan').textContent=d.quan+' · Có '+d.dangCo.length+'/'+d.tongSP+' SP';
+    document.getElementById('cmdDangCo').textContent=d.dangCo.length;
+    document.getElementById('cmdChuaCo').textContent=d.chuaCo.length;
+    document.getElementById('cmdDangCoN').textContent='('+d.dangCo.length+')';
+    document.getElementById('cmdChuaCoN').textContent='('+d.chuaCo.length+')';
+    var dh='';
+    d.dangCo.forEach(p=>{
+      var pill;
+      if(p.level==='gap') pill='<span class="sp-det-pill gap">Đã qua '+p.soNgay+'n · GAP</span>';
+      else if(p.level==='amb') pill='<span class="sp-det-pill amb">Đã qua '+p.soNgay+'n</span>';
+      else pill='<span class="sp-det-pill ok">Đã qua '+p.soNgay+'n</span>';
+      dh+='<div class="sp-det-row have"><span style="font-weight:'+(p.level==='gap'||p.level==='amb'?'600':'400')+';">'+esc(p.sp)+'</span>'+pill+'</div>';
+    });
+    document.getElementById('cmdDangCoList').innerHTML=dh||'<div class="empty">Chưa nhập SP nào</div>';
+    var ch='';
+    d.chuaCo.forEach(p=>ch+='<span class="sp-chip">'+esc(p.sp)+'</span>');
+    document.getElementById('cmdChuaCoList').innerHTML=ch||'<div class="tx-mu">Đã có đủ 21 SP</div>';
+  }).catch(e=>{
+    toast('Lỗi kết nối','err');
+    closeCmDetModal();
+  });
+}
+
+function closeCmDetModal(){document.getElementById('cmDetModal').classList.remove('on');cmdCur=null;}
+
+function cmdXongChao(){
+  if(!cmdCur)return;
+  var btn=document.getElementById('cmdXongBtn');
+  btn.disabled=true;
+  btn.innerHTML='<span class="loader"></span> Đang lưu...';
+  apiPost({loai:'chao_ma_log',tenCH:cmdCur.tenCH,nvSale:MY_NAME,soMaThieu:cmdCur.chuaCo?cmdCur.chuaCo.length:0,ghiChu:''})
+    .then(d=>{
+      btn.disabled=false;
+      btn.textContent='✓ Đã chào xong';
+      if(!d.ok){toast('Lỗi: '+d.msg,'err');return;}
+      toast('Đã ghi nhận chào mã','ok');
+      closeCmDetModal();
+    })
+    .catch(e=>{
+      btn.disabled=false;
+      btn.textContent='✓ Đã chào xong';
+      toast('Lỗi kết nối','err');
+    });
+}
+
+function pullCHList(){
+  apiGet({loai:'vandon',action:'get'}).then(d=>{
+    if(!d.ok) return;
+    chData=d.rows||[];
+    sv('sale_ch_cache',chData);
+    var dl=document.getElementById('ldChList');
+    dl.innerHTML=chData.map(r=>'<option value="'+esc(r.tenCH)+'">').join('');
+  }).catch(()=>{});
+}
+
+function ldCHChange(){
+  var v=document.getElementById('ldCH').value.trim();
+  var info=document.getElementById('ldInfo');
+  if(!v){info.innerHTML='';return;}
+  var r=chData && chData.find(x=>x.tenCH===v);
+  if(r){
+    info.innerHTML='<span class="b-bl">NV: '+esc(r.nvGiao||'?')+' (auto)</span><span class="b-mu">'+esc(r.quan||'?')+'</span>';
+  } else {
+    info.innerHTML='<span class="b-mu">CH mới (NV sẽ auto assign)</span>';
+  }
+}
+
+function ldLoai(btn,v){
+  ldLoaiCur=v;
+  document.querySelectorAll('[data-ld]').forEach(b=>b.classList.toggle('on',b.dataset.ld===v));
+  document.getElementById('ldTime').style.display=v==='hen'?'block':'none';
+  ldUpdatePreview();
+}
+
+function ldAddSP(){
+  var id='sp_'+Date.now()+'_'+Math.random().toString(36).slice(2,6);
+  ldSPList.push({id:id,name:PROD_LIST[0],qty:1,note:''});
+  ldRenderSPs();
+}
+
+function ldRemoveSP(id){
+  ldSPList=ldSPList.filter(s=>s.id!==id);
+  ldRenderSPs();
+}
+
+function ldRenderSPs(){
+  document.getElementById('ldSPCount').textContent=ldSPList.length;
+  var html='';
+  ldSPList.forEach(s=>{
+    html+='<div class="sp-prod">'+
+      '<div class="sp-prod-row">'+
+        '<select class="form-sel" style="flex:2;" onchange="ldUpdateSP(\''+s.id+'\',\'name\',this.value)">'+
+        PROD_LIST.map(p=>'<option '+(p===s.name?'selected':'')+'>'+esc(p)+'</option>').join('')+
+        '</select>'+
+        '<input type="number" min="1" value="'+s.qty+'" style="width:60px; padding:6px; text-align:center; border:.5px solid var(--bd); border-radius:8px;" onchange="ldUpdateSP(\''+s.id+'\',\'qty\',this.value)">'+
+        '<span class="tx-mu" style="min-width:25px;">gói</span>'+
+        '<button class="btn-s" style="color:var(--re);" onclick="ldRemoveSP(\''+s.id+'\')">×</button>'+
+      '</div>'+
+      '<input type="text" class="form-inp" style="padding:6px 8px; font-size:11px;" placeholder="Ghi chú SP (tùy chọn)" value="'+esc(s.note)+'" onchange="ldUpdateSP(\''+s.id+'\',\'note\',this.value)">'+
+    '</div>';
+  });
+  document.getElementById('ldSPs').innerHTML=html||'<div class="tx-mu" style="text-align:center; padding:12px;">Chưa có SP. Bấm "+ Thêm SP"</div>';
+  ldUpdatePreview();
+}
+
+function ldUpdateSP(id,field,val){
+  var s=ldSPList.find(x=>x.id===id);
+  if(!s) return;
+  s[field]=field==='qty'?parseInt(val)||1:val;
+  ldUpdatePreview();
+}
+
+function ldUpdatePreview(){
+  var tenCH=document.getElementById('ldCH').value.trim();
+  var preview=document.getElementById('ldPreview');
+  if(!tenCH||!ldSPList.length){preview.style.display='none';return;}
+  var r=chData && chData.find(x=>x.tenCH===tenCH);
+  var nv=r?r.nvGiao:'sẽ auto';
+  preview.innerHTML='Đơn sẽ gửi cho <strong>NV '+esc(nv)+'</strong>. NV pull app sẽ thấy ngay.';
+  preview.style.display='block';
+  document.getElementById('ldSubmitBtn').textContent='↑ Gửi đơn cho NV '+nv;
+}
+
+function ldReset(){
+  document.getElementById('ldCH').value='';
+  document.getElementById('ldInfo').innerHTML='';
+  document.getElementById('ldGhiChu').value='';
+  document.getElementById('ldTime').value='';
+  ldSPList=[];
+  ldLoaiCur='order';
+  document.querySelectorAll('[data-ld]').forEach(b=>b.classList.toggle('on',b.dataset.ld==='order'));
+  document.getElementById('ldTime').style.display='none';
+  ldRenderSPs();
+  ldUpdatePreview();
+}
+
+function ldSubmit(){
+  var tenCH=document.getElementById('ldCH').value.trim();
+  if(!tenCH){toast('Chọn CH','err');return;}
+  if(!ldSPList.length){toast('Thêm ít nhất 1 SP','err');return;}
+  var r=chData && chData.find(x=>x.tenCH===tenCH);
+  var nv=r?r.nvGiao:'';
+  if(!nv){toast('CH không có NV giao','err');return;}
+  var ghiChu=document.getElementById('ldGhiChu').value.trim();
+  var thoiGianHen=ldLoaiCur==='hen'?document.getElementById('ldTime').value:'';
+  var rows=ldSPList.map((s,i)=>[
+    '', tenCH, s.name, s.qty, s.note||'',
+    ldLoaiCur==='thu_no'?'thu_no':ldLoaiCur==='gap'?'gap':ldLoaiCur==='hen'?'hen':'order',
+    0, ghiChu, r?r.mapUrl:'', 'Chua giao',
+    nv, new Date().toLocaleString('vi-VN'),
+    r?r.quan:'', 'sale_app',
+    ldLoaiCur==='gap'?'gap':'normal', thoiGianHen
+  ]);
+  var btn=document.getElementById('ldSubmitBtn');
+  btn.disabled=true;
+  btn.innerHTML='<span class="loader"></span> Đang gửi...';
+  apiPost({loai:'vandon_ngay',nv:nv,rows:rows}).then(d=>{
+    btn.disabled=false;
+    ldUpdatePreview();
+    if(!d.ok){toast('Lỗi: '+d.msg,'err');return;}
+    toast('Đã gửi '+ldSPList.length+' SP cho NV '+nv,'ok');
+    ldReset();
+  }).catch(e=>{
+    btn.disabled=false;
+    ldUpdatePreview();
+    toast('Lỗi kết nối','err');
+  });
+}
+
+(function init(){
+  if(!GS_URL || !MY_NAME){
+    goTab('caidat');
+    document.getElementById('hdS').textContent='Chưa cấu hình';
+    return;
+  }
+  document.getElementById('setUrl').value=GS_URL;
+  document.getElementById('setName').value=MY_NAME;
+  document.getElementById('hdS').textContent='Sale '+MY_NAME;
+  pullAll();
+})();
+</script>
+</body>
+</html>
